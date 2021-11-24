@@ -6,8 +6,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 var dishRouter = require("./routes/dishRouter");
+var usersRouter = require("./routes/users");
 var leaderRouter = require("./routes/leaderRouter");
 var promoRouter = require("./routes/promoRouter");
 
@@ -17,7 +17,7 @@ const mongoose = require("mongoose");
 var url =
   "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 var mongoDB = process.env.MONGODB_URI || url;
-const connect = mongoose.connect(url);
+const connect = mongoose.connect(mongoDB);
 
 connect.then(
   (db) => {
