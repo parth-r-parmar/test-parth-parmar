@@ -9,7 +9,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var dishRouter = require("./routes/dish");
 
-var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
+// var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
 var mongoDB = process.env.MONGODB_URI || url;
 const connect = mongoose.connect(mongoDB);
 
