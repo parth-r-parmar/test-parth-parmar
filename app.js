@@ -10,7 +10,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 // var dishRouter = require("./routes/dishRouter");
 var usersRouter = require("./routes/users");
-var dishRouter1 = require("./routes/dishRouter");
+// var dishRouter1 = require("./routes/dishRouter");
 var leaderRouter = require("./routes/leaderRouter");
 var promoRouter = require("./routes/promoRouter");
 
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", router);
-app.use("/dishes", dishRouter1);
+// app.use("/dishes", dishRouter1);
 app.use("/leaders", leaderRouter);
 app.use("/promotions", promoRouter);
 
