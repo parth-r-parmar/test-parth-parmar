@@ -3,12 +3,13 @@ const bodyParser = require("body-parser");
 // const mongoose = require("mongoose");
 const Dishes = require("../models/dishes");
 
-const Router = express.Router();
+const dishRouter = express.Router();
 
-Router.use(bodyParser.json());
+dishRouter.use(bodyParser.json());
 
 /*********************** For Dishes *************************/
-Router.route("/")
+dishRouter
+  .route("/")
   .get((req, res, next) => {
     Dishes.find({})
       .then(
@@ -51,7 +52,8 @@ Router.route("/")
       .catch((err) => next(err));
   });
 
-Router.route("/:dishId")
+dishRouter
+  .route("/:dishId")
   .get((req, res, next) => {
     Dishes.findById(req.params.dishId)
       .then(
@@ -274,4 +276,4 @@ Router.route("/:dishId")
 //       .catch((err) => next(err));
 //   });
 
-module.exports = Router;
+module.exports = dishRouter;
