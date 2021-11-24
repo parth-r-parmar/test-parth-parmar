@@ -3,18 +3,18 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Dishes = require("../models/dishes");
 
-var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
-var mongoDB = process.env.MONGODB_URI || url;
-const connect = mongoose.connect(mongoDB);
+// var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
+// var mongoDB = process.env.MONGODB_URI || url;
+// const connect = mongoose.connect(mongoDB);
 
-connect.then(
-  (db) => {
-    console.log("Connected to server : " + db);
-  },
-  (err) => {
-    console.log(err);
-  }
-);
+// connect.then(
+//   (db) => {
+//     console.log("Connected to server : " + db);
+//   },
+//   (err) => {
+//     console.log(err);
+//   }
+// );
 
 const router = express.Router();
 
