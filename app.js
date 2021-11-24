@@ -2,15 +2,12 @@ var createError = require("http-errors");
 var express = require("express");
 const mongoose = require("mongoose");
 var app = express();
-// var path = require("path");
-// var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var dishRouter = require("./routes/dish");
 
-// var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
-var mongoDB = process.env.MONGODB_URI || url;
+var mongoDB = process.env.MONGODB_URI;
 const connect = mongoose.connect(mongoDB);
 
 connect.then(
@@ -22,15 +19,7 @@ connect.then(
   }
 );
 
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "jade");
-
 app.use(logger("dev"));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, "public")));
-
 app.use("/", indexRouter);
 app.use("/dishes", dishRouter);
 
