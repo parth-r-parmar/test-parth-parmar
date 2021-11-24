@@ -14,7 +14,7 @@ router
     Dishes.find({})
       .then(
         (dishes) => {
-          console.log(dishes);
+          // console.log(dishes);
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(dishes);
