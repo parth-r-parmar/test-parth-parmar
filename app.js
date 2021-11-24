@@ -23,16 +23,15 @@ const Dishes = require("./models/dishes");
 connect.then(
   (db) => {
     console.log("Connected to server");
-    Dishes.find({})
-      .then(
-        (dishes) => {
-          // res.statusCode = 200;
-          // res.setHeader("Content-Type", "application/json");
-          console.log(dishes);
-        },
-        (err) => next(err)
-      )
-      .catch((err) => next(err));
+    Dishes.find({}).then(
+      (dishes) => {
+        // res.statusCode = 200;
+        // res.setHeader("Content-Type", "application/json");
+        console.log(dishes);
+      }
+      // ,(err) => next(err)
+    );
+    // .catch((err) => next(err));
   },
   (err) => {
     console.log(err);
