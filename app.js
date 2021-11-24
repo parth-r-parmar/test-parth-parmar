@@ -1,24 +1,24 @@
+// require("dotenv").config();
 var createError = require("http-errors");
-
 var express = require("express");
 var app = express();
-
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-// var dishRouter = require("./routes/dishRouter");
+var dishRouter = require("./routes/dishRouter");
 var usersRouter = require("./routes/users");
-// var dishRouter1 = require("./routes/dishRouter");
 var leaderRouter = require("./routes/leaderRouter");
 var promoRouter = require("./routes/promoRouter");
 
 const mongoose = require("mongoose");
-var url =
-  "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const Dishes = require("./models/dishes");
+// const url = "mongodb://localhost:27017/conFusion"; //For local database
+var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
 var mongoDB = process.env.MONGODB_URI || url;
 const connect = mongoose.connect(mongoDB);
+
 connect.then(
   (db) => {
     console.log("Connected to server");
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-// app.use("/dishes", dishRouter1);
+app.use("/dishes", dishRouter);
 app.use("/leaders", leaderRouter);
 app.use("/promotions", promoRouter);
 
