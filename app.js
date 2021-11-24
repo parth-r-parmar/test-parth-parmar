@@ -4,6 +4,7 @@ var express = require("express");
 var app = express();
 var path = require("path");
 var cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
@@ -25,9 +26,9 @@ connect.then(
     Dishes.find({})
       .then(
         (dishes) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(dishes);
+          // res.statusCode = 200;
+          // res.setHeader("Content-Type", "application/json");
+          console.log(dishes);
         },
         (err) => next(err)
       )
