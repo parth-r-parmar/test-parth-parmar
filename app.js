@@ -13,7 +13,10 @@ var promoRouter = require("./routes/promoRouter");
 const mongoose = require("mongoose");
 const Dishes = require("./models/dishes");
 
-const url = "mongodb://localhost:27017/conFusion"; //For local database
+// const url = "mongodb://localhost:27017/conFusion"; //For local database
+var url =
+  "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+var mongoDB = process.env.MONGODB_URI || url;
 const connect = mongoose.connect(url);
 
 connect.then(
