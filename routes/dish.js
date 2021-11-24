@@ -3,17 +3,31 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Dishes = require("../models/dishes");
 
-const dishRouter = express.Router();
+var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
+var mongoDB = process.env.MONGODB_URI || url;
+const connect = mongoose.connect(mongoDB);
 
-dishRouter.use(bodyParser.json());
+connect.then(
+  (db) => {
+    console.log("Connected to server : " + db);
+  },
+  (err) => {
+    console.log(err);
+  }
+);
+
+const router = express.Router();
+
+router.use(bodyParser.json());
 
 /*********************** For Dishes *************************/
-dishRouter
+router
   .route("/")
   .get((req, res, next) => {
     Dishes.find({})
       .then(
         (dishes) => {
+          console.log(dishes);
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(dishes);
@@ -52,7 +66,7 @@ dishRouter
       .catch((err) => next(err));
   });
 
-dishRouter
+router
   .route("/:dishId")
   .get((req, res, next) => {
     Dishes.findById(req.params.dishId)
@@ -102,7 +116,7 @@ dishRouter
   });
 
 /*********************** For Comment *************************/
-dishRouter
+router
   .route("/:dishId/comments")
   .get((req, res, next) => {
     Dishes.findById(req.params.dishId)
@@ -181,7 +195,7 @@ dishRouter
       .catch((err) => next(err));
   });
 
-dishRouter
+router
   .route("/:dishId/comments/:commentId")
   .get((req, res, next) => {
     Dishes.findById(req.params.dishId)
@@ -276,4 +290,4 @@ dishRouter
       .catch((err) => next(err));
   });
 
-module.exports = dishRouter;
+module.exports = router;
