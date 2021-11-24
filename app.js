@@ -1,6 +1,8 @@
-require("dotenv").config();
 var createError = require("http-errors");
+
 var express = require("express");
+var app = express();
+
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
@@ -12,13 +14,10 @@ var leaderRouter = require("./routes/leaderRouter");
 var promoRouter = require("./routes/promoRouter");
 
 const mongoose = require("mongoose");
-// const Dishes = require("./models/dishes");
-// const url = "mongodb://localhost:27017/conFusion"; //For local database
 var url =
   "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 var mongoDB = process.env.MONGODB_URI || url;
 const connect = mongoose.connect(mongoDB);
-
 connect.then(
   (db) => {
     console.log("Connected to server");
@@ -27,8 +26,6 @@ connect.then(
     console.log(err);
   }
 );
-
-var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
