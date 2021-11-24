@@ -18,10 +18,20 @@ const mongoose = require("mongoose");
 var url = "mongodb+srv://user:1234@parth-parmar.btna0.mongodb.net/";
 var mongoDB = process.env.MONGODB_URI || url;
 const connect = mongoose.connect(mongoDB);
-
+const Dishes = require("./models/dishes");
 connect.then(
   (db) => {
     console.log("Connected to server");
+    Dishes.find({})
+      .then(
+        (dishes) => {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+          res.json(dishes);
+        },
+        (err) => next(err)
+      )
+      .catch((err) => next(err));
   },
   (err) => {
     console.log(err);
